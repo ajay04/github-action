@@ -16,8 +16,8 @@ on:
     paths:
       - "src/**/*"
 
-  schedule:
-    - cron: "0 0 * * *"
+  # schedule:
+  #   - cron: "0 0 * * *"
 
 jobs:
   echo-event:

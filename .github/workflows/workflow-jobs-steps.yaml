@@ -1,0 +1,32 @@
+name: Workflow, Jobs and Steps
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job-1:
+    runs-on: ubuntu-slim
+    steps:
+      - run: echo "line1"
+      - run: echo "line2"
+      - run: echo "line3"
+  job-2:
+    runs-on: ubuntu-slim
+    steps:
+      - run: echo "Multiple jobs can run in paralel"
+    
+  job-3:
+    runs-on: ubuntu-slim
+    needs:
+      - job-1
+      - job-2
+    steps:
+      - run: echo "this job will run after job1 and job2"
+
+  job-4:
+    runs-on: ubuntu-slim
+    needs:
+      - job-2
+      - job-3
+    steps:
+      - run: echo "job4 message after job2 and job3"

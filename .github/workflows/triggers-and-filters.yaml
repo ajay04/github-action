@@ -8,7 +8,7 @@ on:
       - "feature/*"
     paths:
       - "core-features/filters/*.md"
-      - "!core-features/filter/*.txt"
+      - "!core-features/filters/*.txt"
   
   pull_request:
     branches:
@@ -18,8 +18,8 @@ on:
       - synchronize
       - reopened
     paths:
-      - "core-features/filter/*.md"
-      - "!core-features/filter/*.txt"
+      - "core-features/filters/*.md"
+      - "!core-features/filters/*.txt"
 
   # schedule:
   #   - cron: "0 0 * * *"

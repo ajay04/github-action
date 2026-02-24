@@ -10,6 +10,7 @@ jobs:
       foo: ${{ steps.generate-foo.outputs.foo }}
     steps:
       - name: Generate and export foo
+        id: generate-foo
         run: |
           foo=bar
 

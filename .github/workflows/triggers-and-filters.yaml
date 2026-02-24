@@ -7,7 +7,7 @@ on:
     branches:
       - "feature/*"
     paths:
-      - "core-features/filter/*.md"
+      - "core-features/filters/*.md"
       - "!core-features/filter/*.txt"
   
   pull_request:

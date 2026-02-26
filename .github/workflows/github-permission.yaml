@@ -1,0 +1,42 @@
+name: Permission
+on:
+  workflow_dispatch:
+
+jobs:
+  read-only-pr:
+    runs-on: ubuntu-slim
+    permissions:
+      pull-requests: read
+    continue-on-error: true
+    steps:
+      - name: Install Github CLI
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y gh
+      
+      - name: LList the first 5 open PRs (allowed)
+        run: |
+          gh pr list --limit 5
+      
+      - name: Attempt to add a label (expected to fail)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr edit 1 --add-label "document"
+      - name: Confirm the failure
+        if: failure()
+        run: echo "Write operation was blocked - token is read only"
+  
+  read-write-pr:
+    runs-on: ubuntu-slim
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Install Github CLI
+        run: sudo apt-get update -qq && sudo apt-get install -y GH_TOKEN
+      - name: Attempt to add a label (expected to succeed)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr edit 1 --add-label "document"
+      - name: Confirm the success
+        if: success()
+        run: echo "Write operation successful"

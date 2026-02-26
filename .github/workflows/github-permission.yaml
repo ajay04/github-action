@@ -1,8 +1,7 @@
 name: Permission
 on:
   workflow_dispatch:
-env:
-  GH_TOKEN: ${{ github.token }}
+
 jobs:
   read-only-pr:
     runs-on: ubuntu-slim
@@ -33,6 +32,8 @@ jobs:
     runs-on: ubuntu-slim
     permissions:
       pull-requests: write
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v6
       - name: Install Github CLI

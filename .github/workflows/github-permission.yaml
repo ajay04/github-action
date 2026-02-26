@@ -8,6 +8,8 @@ jobs:
     permissions:
       pull-requests: read
     continue-on-error: true
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v6
       - name: Install Github CLI
@@ -19,8 +21,7 @@ jobs:
           gh pr list --limit 5
       
       - name: Attempt to add a label (expected to fail)
-        env:
-          GH_TOKEN: ${{ github.token }}
+        
         run: |
           gh pr edit 1 --add-label "document"
       - name: Confirm the failure

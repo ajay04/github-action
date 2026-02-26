@@ -1,0 +1,32 @@
+name: Atifacts
+on:
+  workflow_dispatch: 
+
+jobs:
+  generate-artifacts:
+    runs-on: ubuntu-slim
+    steps:
+      - name: Create artifact file
+        run: |
+          echo "This is stored as an artifact!" >> artifact.txt
+          echo "Generaated on%(date)" >> artifact.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v6.0.0
+        with:
+          name: example-artifact
+          path: artifact.txt
+
+  artifact-consumer:
+    runs-on: ubuntu-slim
+    needs: 
+      - generate-artifacts
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v7.0.0
+        with:
+          name: example-artifact
+    
+      - name: Display artifact
+        run: |
+          cat artifact.txt

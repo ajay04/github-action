@@ -9,7 +9,7 @@ jobs:
       - name: Create artifact file
         run: |
           echo "This is stored as an artifact!" >> artifact.txt
-          echo "Generaated on%(date)" >> artifact.txt
+          echo "Generaated on $(date)" >> artifact.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v6.0.0

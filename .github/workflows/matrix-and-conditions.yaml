@@ -20,5 +20,5 @@ jobs:
           echo "Letter: ${{ matrix.letter }}"
 
       - name: Run everything except 2c
-        if: ${{ ! (matrix.nuber == 2 && matrix.letter == 'c') }}
+        if: ${{ ! (matrix.number == 2 && matrix.letter == 'c') }}
         run: echo "This step runs for ${{ matrix.number}} and ${{ matrix.letter }}"

@@ -1,0 +1,24 @@
+name: Matrix and Condition
+on:
+  workflow_dispatch: 
+
+jobs:
+  matrix-job:
+    runs-on: ubuntu-slim
+    strategy:
+      matrix:
+        number: [1,2]
+        letter: [a,b,c]
+        exclude:
+          - number: 1
+            letter: c
+    
+    steps:
+      - name: Echo number and letter
+        run: |
+          echo "Number: ${{ matrix.number }}"
+          echo "Letter: ${{ matrix.letter }}"
+
+      - name: Run everything except 2c
+        if: ${{ ! (matrix.number == 2 && matrix.letter == 'c') }}
+        run: echo "This step runs for ${{ matrix.number}} and ${{ matrix.letter }}"

@@ -4,7 +4,7 @@ on:
 
 jobs:
   matrix-job:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-slim
     strategy:
       matrix:
         number: [1,2]
